@@ -18,7 +18,7 @@ class BookListAdapter(private val bookList: List<Book>): RecyclerView.Adapter<Bo
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
 
-        val adapterLayout = LayoutInflater.from(parent.context)
+       val adapterLayout = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_layout, parent, false)
 
         return ItemViewHolder(adapterLayout)
@@ -29,6 +29,7 @@ class BookListAdapter(private val bookList: List<Book>): RecyclerView.Adapter<Bo
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val item = bookList[position]
         holder.titleView.text = item.volumeInfo.title
+
         Glide.with(holder.itemView.context)
             .load(item.volumeInfo.imageLinks.thumbnail)
             .placeholder(R.drawable.loading_animation)

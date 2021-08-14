@@ -25,7 +25,7 @@ interface  BookSearchApi {
     suspend fun getBooksByTitle(): BookResponse
 }
 
-object BookSeach {
+object BookSearch {
     val retrofitService : BookSearchApi by lazy {
         retrofit.create(BookSearchApi::class.java)
     }

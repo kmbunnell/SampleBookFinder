@@ -8,6 +8,7 @@ data class BookResponse(
     val items: List<Book>
 )
 data class Book (
+    val id:String,
     val volumeInfo: VolumeInfo
 )
 

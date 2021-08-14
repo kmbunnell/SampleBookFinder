@@ -13,9 +13,10 @@ import com.bumptech.glide.Glide
 class BookGridAdapter: ListAdapter<Book, BookGridAdapter.BooksViewHolder>(DiffCallback) {
 
 
-    class BooksViewHolder(
+    inner class BooksViewHolder(
         private var binding: ItemLayoutBinding
     ) : RecyclerView.ViewHolder(binding.root) {
+
         fun bind(book: Book) {
            binding.bookItem=book
             binding.executePendingBindings()
@@ -36,17 +37,21 @@ class BookGridAdapter: ListAdapter<Book, BookGridAdapter.BooksViewHolder>(DiffCa
         parent: ViewGroup,
         viewType: Int
     ): BooksViewHolder {
-        return BooksViewHolder(
+        val binding = ItemLayoutBinding
+            .inflate(LayoutInflater.from(parent.context), parent, false)
+
+        return BooksViewHolder(binding)
+    /* return BooksViewHolder(
             ItemLayoutBinding.inflate(LayoutInflater.from(parent.context))
-        )
+        )*/
     }
 
     /**
      * Replaces the contents of a view (invoked by the layout manager)
      */
     override fun onBindViewHolder(holder: BooksViewHolder, position: Int) {
-        val marsPhoto = getItem(position)
-        holder.bind(marsPhoto)
+        val book = getItem(position)
+        holder.bind(book)
     }
 
 

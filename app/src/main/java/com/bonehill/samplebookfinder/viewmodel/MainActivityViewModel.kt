@@ -14,8 +14,8 @@ class MainActivityViewModel :ViewModel() {
 
 
     private val _books = MutableLiveData<List<Book>>()
-
     val books: LiveData<List<Book>> = _books
+
     init {
         loadBooks()
     }

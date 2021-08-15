@@ -4,9 +4,7 @@
         <variable
             name="viewModel"
             type="com.bonehill.samplebookfinder.viewmodel.MainActivityViewModel" />
-        <variable
-            name="searchWord"
-            type="String" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -15,6 +13,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".MainActivity">
+
+        <ProgressBar
+            android:id="@+id/progressBar1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:elevation="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:visibility="@{viewModel.progress}"/>
 
 
     <EditText
@@ -26,8 +36,9 @@
         android:layout_marginEnd="5dp"
         android:backgroundTint="#469C27B0"
         android:ems="10"
-        android:hint="Search title"
-        android:inputType="textPersonName"
+        android:hint="@string/searchTitle"
+        android:inputType="text"
+        android:imeOptions="actionSend"
         app:layout_constraintEnd_toStartOf="@+id/btnSearch"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -39,7 +50,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="?attr/actionBarSize"
         android:layout_marginEnd="10dp"
-        android:text="Search"
+        android:text="@string/search"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

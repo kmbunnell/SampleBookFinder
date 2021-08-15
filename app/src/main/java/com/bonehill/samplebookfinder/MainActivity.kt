@@ -5,6 +5,7 @@ import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
@@ -26,18 +27,31 @@ class MainActivity : AppCompatActivity() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
         binding.recyclerView.adapter=BookGridAdapter()
+        binding.txtSearch.setOnEditorActionListener { v, actionId, event ->
+            return@setOnEditorActionListener when (actionId) {
+                EditorInfo.IME_ACTION_SEND -> {
+                    doSearch(binding.txtSearch.text.toString())
 
-        binding.btnSearch.setOnClickListener {
-
-            val p=binding.txtSearch.text.toString()
-            hideKeyboard()
-            if(p.length>0)
-                viewModel.loadBooks(p)
-
+                    true
+                }
+                else -> false
+            }
         }
+
+       binding.btnSearch.setOnClickListener {
+            doSearch(binding.txtSearch.text.toString())
+        }
+
 
     }
 
+    fun doSearch(searchWord:String)
+    {
+        if(searchWord.length>0) {
+            hideKeyboard()
+            viewModel.loadBooks(searchWord)
+        }
+    }
     fun Activity.hideKeyboard() {
         val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(currentFocus!!.windowToken, 0)

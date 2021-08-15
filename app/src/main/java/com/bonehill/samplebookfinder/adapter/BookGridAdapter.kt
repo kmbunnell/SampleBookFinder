@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bonehill.samplebookfinder.R
 import com.bonehill.samplebookfinder.data.Book
 import com.bonehill.samplebookfinder.databinding.CardItemBinding
-import com.bonehill.samplebookfinder.databinding.ItemLayoutBinding
+
 import com.bumptech.glide.Glide
 
 class BookGridAdapter: ListAdapter<Book, BookGridAdapter.BooksViewHolder>(DiffCallback) {
@@ -30,7 +30,7 @@ class BookGridAdapter: ListAdapter<Book, BookGridAdapter.BooksViewHolder>(DiffCa
         }
 
         override fun areContentsTheSame(oldItem: Book, newItem: Book): Boolean {
-            return oldItem.volumeInfo.imageLinks!!.thumbnail == newItem.volumeInfo.imageLinks!!.thumbnail
+            return oldItem.volumeInfo.imageLinks?.thumbnail == newItem.volumeInfo.imageLinks?.thumbnail
         }
     }
 

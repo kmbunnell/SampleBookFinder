@@ -14,8 +14,8 @@ data class Book (
 
 data class VolumeInfo (
     val title:String,
-    val authors: List<String>,
-    val imageLinks:ImageLinks
+    val authors: List<String>?,
+    val imageLinks:ImageLinks?
     )
 
 data class ImageLinks(

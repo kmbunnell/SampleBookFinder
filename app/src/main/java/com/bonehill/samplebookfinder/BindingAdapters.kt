@@ -16,8 +16,9 @@ fun bindRecyclerView(recyclerView: RecyclerView, data: List<Book>?) {
 
 @BindingAdapter("imageUrl")
 fun bindImage(imgView: ImageView, imgUrl: String?) {
+   var url=imgUrl?.replace("http:", "https:")
     Glide.with(imgView.context)
-        .load(imgUrl)
+        .load(url)
         .placeholder(R.drawable.loading_animation)
         .error(R.drawable.ic_broken)
         .fallback(R.drawable.ic_unavailable)

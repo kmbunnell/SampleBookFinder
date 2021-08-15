@@ -1,7 +1,11 @@
 package com.bonehill.samplebookfinder
 
+import android.app.Activity
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.view.inputmethod.InputMethodManager
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import com.bonehill.samplebookfinder.adapter.BookGridAdapter
@@ -23,15 +27,19 @@ class MainActivity : AppCompatActivity() {
         binding.lifecycleOwner = this
         binding.recyclerView.adapter=BookGridAdapter()
 
+        binding.btnSearch.setOnClickListener {
 
-       /* binding.viewModel = viewmodel
+            val p=binding.txtSearch.text.toString()
+            hideKeyboard()
+            if(p.length>0)
+                viewModel.loadBooks(p)
 
-        viewmodel.books.observe(this, Observer { booklist ->
-            if (booklist.isNotEmpty()) {
-               binding.recyclerView.adapter=BookGridAdapter()
-            }
-        })*/
+        }
 
+    }
 
+    fun Activity.hideKeyboard() {
+        val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(currentFocus!!.windowToken, 0)
     }
 }

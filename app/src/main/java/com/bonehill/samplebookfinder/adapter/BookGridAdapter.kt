@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bonehill.samplebookfinder.R
 import com.bonehill.samplebookfinder.data.Book
+import com.bonehill.samplebookfinder.databinding.CardItemBinding
 import com.bonehill.samplebookfinder.databinding.ItemLayoutBinding
 import com.bumptech.glide.Glide
 
@@ -14,7 +15,7 @@ class BookGridAdapter: ListAdapter<Book, BookGridAdapter.BooksViewHolder>(DiffCa
 
 
     inner class BooksViewHolder(
-        private var binding: ItemLayoutBinding
+        private var binding: CardItemBinding//ItemLayoutBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(book: Book) {
@@ -29,7 +30,7 @@ class BookGridAdapter: ListAdapter<Book, BookGridAdapter.BooksViewHolder>(DiffCa
         }
 
         override fun areContentsTheSame(oldItem: Book, newItem: Book): Boolean {
-            return oldItem.volumeInfo.imageLinks.thumbnail == newItem.volumeInfo.imageLinks.thumbnail
+            return oldItem.volumeInfo.imageLinks!!.thumbnail == newItem.volumeInfo.imageLinks!!.thumbnail
         }
     }
 
@@ -37,18 +38,13 @@ class BookGridAdapter: ListAdapter<Book, BookGridAdapter.BooksViewHolder>(DiffCa
         parent: ViewGroup,
         viewType: Int
     ): BooksViewHolder {
-        val binding = ItemLayoutBinding
+        val binding = CardItemBinding
             .inflate(LayoutInflater.from(parent.context), parent, false)
 
         return BooksViewHolder(binding)
-    /* return BooksViewHolder(
-            ItemLayoutBinding.inflate(LayoutInflater.from(parent.context))
-        )*/
+
     }
 
-    /**
-     * Replaces the contents of a view (invoked by the layout manager)
-     */
     override fun onBindViewHolder(holder: BooksViewHolder, position: Int) {
         val book = getItem(position)
         holder.bind(book)

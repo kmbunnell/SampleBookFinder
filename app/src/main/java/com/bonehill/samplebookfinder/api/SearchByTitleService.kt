@@ -7,6 +7,7 @@ import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Query
 
 private const val BASE_URL =
     "https://www.googleapis.com/"
@@ -21,8 +22,8 @@ private val retrofit = Retrofit.Builder().addConverterFactory(MoshiConverterFact
     .build()
 
 interface  BookSearchApi {
-    @GET("books/v1/volumes?printType=BOOKS&orderBy=newest&maxResults=10&projection=lite&q=rose")
-    suspend fun getBooksByTitle(): BookResponse
+    @GET("books/v1/volumes?printType=BOOKS&orderBy=newest&maxResults=20&projection=lite")
+    suspend fun getBooksByTitle(@Query("q") title: String): BookResponse
 }
 
 object BookSearch {

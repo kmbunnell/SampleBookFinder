@@ -16,14 +16,10 @@ class MainActivityViewModel :ViewModel() {
     private val _books = MutableLiveData<List<Book>>()
     val books: LiveData<List<Book>> = _books
 
-    init {
-        loadBooks()
-    }
-
-    private fun loadBooks() {
+    fun loadBooks(title:String) {
         viewModelScope.launch {
             try {
-                val response = BookSearch.retrofitService.getBooksByTitle()
+                val response = BookSearch.retrofitService.getBooksByTitle(title)
                 if (!response.items.isEmpty())
                     _books.value = response.items
             } catch (e: Exception) {

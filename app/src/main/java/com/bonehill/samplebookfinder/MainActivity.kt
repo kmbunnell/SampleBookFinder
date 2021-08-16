@@ -21,13 +21,12 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
         binding.recyclerView.adapter=BookGridAdapter()
-        binding.txtSearch.setOnEditorActionListener { v, actionId, event ->
+        binding.txtSearch.setOnEditorActionListener { _, actionId, _ ->
             return@setOnEditorActionListener when (actionId) {
                 EditorInfo.IME_ACTION_SEND -> {
                     doSearch(binding.txtSearch.text.toString())
@@ -42,7 +41,6 @@ class MainActivity : AppCompatActivity() {
             doSearch(binding.txtSearch.text.toString())
         }
 
-
     }
 
     fun doSearch(searchWord:String)
@@ -52,6 +50,7 @@ class MainActivity : AppCompatActivity() {
             viewModel.loadBooks(searchWord)
         }
     }
+
     fun Activity.hideKeyboard() {
         val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(currentFocus!!.windowToken, 0)

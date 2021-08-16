@@ -4,18 +4,15 @@ import android.app.Activity
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import androidx.activity.viewModels
-import androidx.lifecycle.Observer
 import com.bonehill.samplebookfinder.adapter.BookGridAdapter
 
 import com.bonehill.samplebookfinder.databinding.ActivityMainBinding
 import com.bonehill.samplebookfinder.viewmodel.MainActivityViewModel
 
 class MainActivity : AppCompatActivity() {
-   // private lateinit var binding: ActivityMainBinding
 
    private val viewModel: MainActivityViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,15 +40,15 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    fun doSearch(searchWord:String)
+    private fun doSearch(searchWord:String)
     {
-        if(searchWord.length>0) {
+        if(searchWord.isNotEmpty()) {
             hideKeyboard()
             viewModel.loadBooks(searchWord)
         }
     }
 
-    fun Activity.hideKeyboard() {
+    private fun Activity.hideKeyboard() {
         val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(currentFocus!!.windowToken, 0)
     }

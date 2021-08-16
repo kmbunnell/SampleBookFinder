@@ -5,11 +5,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.bonehill.samplebookfinder.R
 import com.bonehill.samplebookfinder.data.Book
 import com.bonehill.samplebookfinder.databinding.CardItemBinding
 
-import com.bumptech.glide.Glide
 
 class BookGridAdapter: ListAdapter<Book, BookGridAdapter.BooksViewHolder>(DiffCallback) {
 

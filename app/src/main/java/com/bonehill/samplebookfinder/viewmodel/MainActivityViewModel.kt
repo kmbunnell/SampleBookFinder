@@ -18,16 +18,16 @@ class MainActivityViewModel :ViewModel() {
     var progress = MutableLiveData<Int>()
 
     init{
-        progress.setValue(8)
+        progress.value=8
     }
 
     fun loadBooks(title:String) {
-        progress.setValue(0)
+        progress.value=0
         viewModelScope.launch {
             try {
 
                 val response = BookSearch.retrofitService.getBooksByTitle(title)
-                if (!response.items.isEmpty())
+                if (response.items.isNotEmpty())
                     _books.value = response.items
             } catch (e: Exception) {
                 Log.e("MainActivityViewModel", e.message.toString())
@@ -35,7 +35,7 @@ class MainActivityViewModel :ViewModel() {
 
             }
             finally{
-                progress.setValue(8)
+                progress.value=8
             }
 
         }

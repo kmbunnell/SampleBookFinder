@@ -1,18 +1,15 @@
-package com.bonehill.samplebookfinder.viewmodel
+package com.bonehill.samplebookfinder.booksearch
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.bonehill.samplebookfinder.data.Book
-
 import com.bonehill.samplebookfinder.api.BookSearch
+import com.bonehill.samplebookfinder.data.Book
 import kotlinx.coroutines.launch
 
-class MainActivityViewModel :ViewModel() {
-
-
+class BookSearchViewModel : ViewModel() {
     private val _books = MutableLiveData<List<Book>>()
     val books: LiveData<List<Book>> = _books
     var progress = MutableLiveData<Int>()
@@ -30,7 +27,7 @@ class MainActivityViewModel :ViewModel() {
                 if (response.items.isNotEmpty())
                     _books.value = response.items
             } catch (e: Exception) {
-                Log.e("MainActivityViewModel", e.message.toString())
+                Log.e("BookSearchViewModel", e.message.toString())
                 _books.value = listOf()
 
             }

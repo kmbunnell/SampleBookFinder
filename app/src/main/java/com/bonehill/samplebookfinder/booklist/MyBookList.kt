@@ -26,7 +26,7 @@ class MyBookList : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(MyBookListViewModel::class.java)
-        // TODO: Use the ViewModel
+
     }
 
 }

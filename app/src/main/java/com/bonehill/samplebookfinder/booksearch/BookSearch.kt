@@ -31,8 +31,7 @@ class BookSearch : Fragment() {
 
         // Allows Data Binding to Observe LiveData with the lifecycle of this Fragment
         binding.viewModel = viewModel
-        binding.lifecycleOwner = this
-
+        binding.lifecycleOwner=this
         binding.recyclerView.adapter= BookGridAdapter()
         binding.txtSearch.setOnEditorActionListener { _, actionId, _ ->
             return@setOnEditorActionListener when (actionId) {

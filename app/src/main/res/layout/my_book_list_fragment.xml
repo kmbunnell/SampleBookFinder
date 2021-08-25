@@ -6,8 +6,10 @@
     tools:context=".booklist.MyBookList">
 
     <TextView
+        android:layout_marginTop="?attr/actionBarSize"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Future BookList " />
+        android:text="Future BookList "
+        android:layout_marginStart="5dp" />
 
 </FrameLayout>

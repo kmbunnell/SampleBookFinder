@@ -1,5 +1,6 @@
 package com.bonehill.samplebookfinder.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -11,14 +12,26 @@ import com.bonehill.samplebookfinder.databinding.CardItemBinding
 
 class BookGridAdapter: ListAdapter<Book, BookGridAdapter.BooksViewHolder>(DiffCallback) {
 
-
     inner class BooksViewHolder(
         private var binding: CardItemBinding//ItemLayoutBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
+        init {
+            binding.setClickListener {
+                binding.bookItem?.let { book ->
+                    addBookToMyList(book)
+                }
+            }
+        }
+
         fun bind(book: Book) {
            binding.bookItem=book
             binding.executePendingBindings()
+        }
+
+        fun addBookToMyList(book:Book)
+        {
+            Log.d("BOOK", "clicked book "+book.volumeInfo.title)
         }
     }
 

@@ -23,10 +23,10 @@ class MyBookList : Fragment() {
         return inflater.inflate(R.layout.my_book_list_fragment, container, false)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this).get(MyBookListViewModel::class.java)
-
     }
+
 
 }

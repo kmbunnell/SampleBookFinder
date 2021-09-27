@@ -4,6 +4,9 @@
     >
     <data>
         <variable
+            name="clickListener"
+            type="android.view.View.OnClickListener"/>
+        <variable
             name="bookItem"
             type="com.bonehill.samplebookfinder.data.Book" />
     </data>
@@ -17,6 +20,7 @@
             app:cardCornerRadius="4dp"
             android:elevation="5dp"
             android:layout_marginBottom="10dp"
+            android:onClick="@{clickListener}"
             >
 
             <LinearLayout

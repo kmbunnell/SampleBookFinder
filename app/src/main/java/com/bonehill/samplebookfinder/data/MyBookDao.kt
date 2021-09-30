@@ -1,9 +1,6 @@
 package com.bonehill.samplebookfinder.data
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -14,4 +11,11 @@ interface MyBookDao {
 
     @Query("SELECT * from MyBook ORDER BY title ASC")
     fun getItems(): Flow<List<MyBook>>
+
+    @Transaction
+    @Query("SELECT * FROM MyBook ORDER BY title ASC")
+    fun getBooksWithTags(): Flow<List<BooksWithTags>>
+
+
+
 }
